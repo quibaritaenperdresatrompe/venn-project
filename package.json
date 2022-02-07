@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "commit": "git-cz",
     "eject": "expo eject",
+    "format": "prettier --write {*,src/**/*}.{js,json}",
     "ios": "expo start --ios",
+    "lint": "eslint --cache .",
     "start": "expo start",
     "web": "expo start --web"
   },
@@ -16,7 +18,23 @@
       "@commitlint/config-conventional"
     ]
   },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,json}": "prettier --write"
+  },
+  "eslintConfig": {
+    "extends": "@react-native-community",
+    "rules": {
+      "quotes": [
+        1,
+        "double"
+      ],
+      "react/react-in-jsx-scope": "off"
+    }
+  },
   "dependencies": {
+    "@react-native-community/eslint-config": "^3.0.1",
+    "eslint": "7",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
@@ -26,9 +44,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.16.11",
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/node": "^17.0.16",
     "git-cz": "^4.8.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "lint-staged": ">=10",
+    "prettier": "^2.5.1"
   }
 }
