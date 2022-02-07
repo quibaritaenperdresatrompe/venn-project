@@ -6,7 +6,6 @@
   "scripts": {
     "android": "expo start --android",
     "commit": "git-cz",
-    "eject": "expo eject",
     "format": "prettier --write {*,src/**/*}.{js,json}",
     "ios": "expo start --ios",
     "lint": "eslint --cache .",
