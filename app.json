@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "venn-project",
+    "name": "Venn Project",
     "slug": "venn-project",
+    "description": "Venn Project allows members to create communities to collaborate on projects.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.qbaepst.vennproject"

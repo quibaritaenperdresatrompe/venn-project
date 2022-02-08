@@ -1,4 +1,11 @@
-# Venn Project
+<p align="center">
+  <img
+    width="300px"
+    src="docs/logo.png"
+    alt="Venn Project Logo" />
+</p>
+
+<h1 align="center">Venn Project</h1>
 
 ## Introduction
 
