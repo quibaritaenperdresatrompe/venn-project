@@ -24,8 +24,8 @@ To setup your local dev environment:
 2. Clone repository
 
 ```sh
-git clone git@github.com:ctrlup-io/rainbow-react.git
-cd rainbow-react
+git clone git@github.com:quibaritaenperdresatrompe/venn-project.git
+cd venn-project
 ```
 
 3. Install dependencies
