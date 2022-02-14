@@ -1,138 +1,40 @@
 {
   "participants": [
     {
-      "firstname": "Valentin",
-      "lastname": "Barit",
+      "firstname": "Paul Antoine",
+      "lastname": "Abeille",
       "favoriteColor": "green"
     },
     {
-      "firstname": "Léo",
-      "lastname": "Séry",
-      "favoriteColor": "orange"
-    },
-    {
-      "firstname": "Benjamin",
-      "lastname": "Gelineau",
-      "favoriteColor": "Blue"
-    },
-    {
-      "firstname": "Dorian",
-      "lastname": "Levée",
-      "favoriteColor": "green"
-    },
-    {
-      "firstname": "Thomas",
-      "lastname": "Curmi",
+      "firstname": "Killian",
+      "lastname": "Adonaï",
       "favoriteColor": "purple"
-    },
-    {
-      "firstname": "Fabian",
-      "lastname": "Ingremeau",
-      "favoriteColor": "green"
-    },
-    {
-      "firstname": "Valentin",
-      "lastname": "Diologent",
-      "favoriteColor": "red"
-    },
-    {
-      "firstname": "Adrien",
-      "lastname": "Clamadieu-Tharaud",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "romain",
-      "lastname": "michel",
-      "favoriteColor": "flou"
-    },
-    {
-      "firstname": "Arnaud",
-      "lastname": "Boyer",
-      "favoriteColor": "blue"
     },
     {
       "firstname": "Clément",
       "lastname": "AUGIER de MOUSSAC",
       "favoriteColor": "black"
     },
-    {
-      "firstname": "Louis",
-      "lastname": "Merlaud",
-      "favoriteColor": "light gray"
-    },
-    {
-      "firstname": "Matthias",
-      "lastname": "Flament"
-    },
-    {
-      "firstname": "Manoa",
-      "lastname": "Marchand",
-      "favoriteColor": "#d4f2d2"
-    },
-    {
-      "firstname": "Antonin",
-      "lastname": "Jouannet",
-      "favoriteColor": "red :)"
-    },
+    { "firstname": "Valentin", "lastname": "Barit", "favoriteColor": "green" },
+    { "firstname": "Léo", "lastname": "Bourin", "favoriteColor": "red" },
+    { "firstname": "Arnaud", "lastname": "Boyer", "favoriteColor": "blue" },
     {
       "firstname": "Maxime",
-      "lastname": "Mourgues",
-      "favoriteColor": "#58B049"
-    },
-    {
-      "firstname": "Joseph",
-      "lastname": "Cloux",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Clément",
-      "lastname": "Manant",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Léo",
-      "lastname": "Bourin",
-      "favoriteColor": "red"
-    },
-    {
-      "firstname": "Costa",
-      "lastname": "Reype",
-      "favoriteColor": "DarkBlue"
-    },
-    {
-      "firstname": "Benjamin",
-      "lastname": "Gelineau",
-      "favoriteColor": "Blue"
-    },
-    {
-      "firstname": "Dorian",
-      "lastname": "Levée",
-      "favoriteColor": "green"
-    },
-    {
-      "firstname": "Thomas",
-      "lastname": "Curmi",
-      "favoriteColor": "purple"
-    },
-    {
-      "firstname": "Fabian",
-      "lastname": "Ingremeau",
-      "favoriteColor": "green"
-    },
-    {
-      "firstname": "Valentin",
-      "lastname": "Diologent",
-      "favoriteColor": "red"
+      "lastname": "Chasson",
+      "favoriteColor": "#318ce7"
     },
     {
       "firstname": "Adrien",
       "lastname": "Clamadieu-Tharaud",
       "favoriteColor": "blue"
     },
+    { "firstname": "Joseph", "lastname": "Cloux", "favoriteColor": "blue" },
+    { "firstname": "Mathis", "lastname": "Coco", "favoriteColor": "blue" },
+    { "firstname": "Thomas", "lastname": "Curmi", "favoriteColor": "purple" },
     {
-      "firstname": "romain",
-      "lastname": "michel",
-      "favoriteColor": "flou"
+      "firstname": "Valentin",
+      "lastname": "DAUTREMENT",
+      "favoriteColor": "yellow"
     },
     {
       "firstname": "Nicolas",
@@ -140,63 +42,43 @@
       "favoriteColor": "yellow"
     },
     {
-      "firstname": "Arnaud",
-      "lastname": "Boyer",
-      "favoriteColor": "blue"
+      "firstname": "Valentin",
+      "lastname": "Diologent",
+      "favoriteColor": "red"
     },
     {
-      "firstname": "Clément",
-      "lastname": "AUGIER de MOUSSAC",
-      "favoriteColor": "black"
-    },
-    {
-      "firstname": "Arnaud",
-      "lastname": "Boyer",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Clément",
-      "lastname": "AUGIER de MOUSSAC",
-      "favoriteColor": "black"
-    },
-    {
-      "firstname": "Louis",
-      "lastname": "Merlaud",
-      "favoriteColor": "light gray"
+      "firstname": "Mattéo",
+      "lastname": "Ferreira",
+      "favoriteColor": "#fab478"
     },
     {
       "firstname": "Matthias",
-      "lastname": "Flament"
+      "lastname": "Flament",
+      "favoriteColor": "blue"
     },
+    { "firstname": "Dorian", "lastname": "Fonseca", "favoriteColor": "blue" },
     {
-      "firstname": "Manoa",
-      "lastname": "Marchand",
-      "favoriteColor": "#d4f2d2"
+      "firstname": "Benjamin",
+      "lastname": "Gelineau",
+      "favoriteColor": "blue"
+    },
+    { "firstname": "Kévin", "lastname": "Granger", "favoriteColor": "red" },
+    {
+      "firstname": "Fabian",
+      "lastname": "Ingremeau",
+      "favoriteColor": "green"
     },
     {
       "firstname": "Antonin",
       "lastname": "Jouannet",
-      "favoriteColor": "red :)"
+      "favoriteColor": "red"
     },
+    { "firstname": "Dorian", "lastname": "Levée", "favoriteColor": "green" },
+    { "firstname": "Clément", "lastname": "Manant", "favoriteColor": "blue" },
     {
-      "firstname": "Joseph",
-      "lastname": "Cloux",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Clément",
-      "lastname": "Manant",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Paul Antoine",
-      "lastname": "Abeille",
-      "favoriteColor": "Green"
-    },
-    {
-      "firstname": "Gaetan",
-      "lastname": "Roux",
-      "favoriteColor": "blue"
+      "firstname": "Manoa",
+      "lastname": "Marchand",
+      "favoriteColor": "#d4f2d2"
     },
     {
       "firstname": "Guillaume",
@@ -206,77 +88,23 @@
     {
       "firstname": "Louis",
       "lastname": "Merlaud",
-      "favoriteColor": "light gray"
+      "favoriteColor": "lightgray"
     },
     {
-      "firstname": "Matthias",
-      "lastname": "Flament"
+      "firstname": "romain",
+      "lastname": "michel",
+      "favoriteColor": "aquamarine"
     },
-    {
-      "firstname": "Manoa",
-      "lastname": "Marchand",
-      "favoriteColor": "#d4f2d2"
-    },
-    {
-      "firstname": "Antonin",
-      "lastname": "Jouannet",
-      "favoriteColor": "red :)"
-    },
-    {
-      "firstname": "Killian",
-      "lastname": "Adonaï",
-      "favoriteColor": "purple "
-    },
-    {
-      "firstname": "Mattéo",
-      "lastname": "Ferreira",
-      "favoriteColor": "#fab478"
-    },
-    {
-      "firstname": "Killian",
-      "lastname": "Adonaï",
-      "favoriteColor": "purple "
-    },
-    {
-      "firstname": "Mattéo",
-      "lastname": "Ferreira",
-      "favoriteColor": "#fab478"
-    },
-    {
-      "firstname": "Valentin",
-      "lastname": "DAUTREMENT",
-      "favoriteColor": "yellow"
-    },
-    {
-      "firstname": "Kévin",
-      "lastname": "Granger",
-      "favoriteColor": "red"
-    },
-    {
-      "firstname": "Enzo",
-      "lastname": "Peyrataud",
-      "favoriteColor": "green"
-    },
-    {
-      "firstname": "Dorian",
-      "lastname": "Fonseca",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Yrlan",
-      "lastname": "Montagnier",
-      "favoriteColor": "blue"
-    },
-    {
-      "firstname": "Mathis",
-      "lastname": "Coco",
-      "favoriteColor": "blue"
-    },
+    { "firstname": "Yrlan", "lastname": "Montagnier", "favoriteColor": "blue" },
     {
       "firstname": "Maxime",
-      "lastname": "Chasson",
-      "favoriteColor": "#318CE7"
+      "lastname": "Mourgues",
+      "favoriteColor": "#58b049"
     },
-    { "firstname": "David", "lastname": "Roussat", "favoriteColor": "red" }
+    { "firstname": "Enzo", "lastname": "Peyrataud", "favoriteColor": "green" },
+    { "firstname": "Costa", "lastname": "Reype", "favoriteColor": "darkblue" },
+    { "firstname": "David", "lastname": "Roussat", "favoriteColor": "red" },
+    { "firstname": "Gaetan", "lastname": "Roux", "favoriteColor": "blue" },
+    { "firstname": "Léo", "lastname": "Séry", "favoriteColor": "orange" }
   ]
 }
