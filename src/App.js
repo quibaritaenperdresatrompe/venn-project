@@ -2,12 +2,12 @@ import { registerRootComponent } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 
-import Members from "./screens/Members";
+import Identification from "./screens/Identification";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Members />
+      <Identification />
       <StatusBar style="auto" />
     </View>
   );
