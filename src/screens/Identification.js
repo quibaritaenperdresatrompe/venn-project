@@ -17,43 +17,54 @@ function Identification() {
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
+  const styles = createStyles({
+    color: member?.favoriteColor,
+    error,
+    member: Boolean(member),
+  });
   const onChange = (text) => {
     setError(false);
+    setMember(null);
     setValue(text);
   };
   const onPress = () => {
     if (value.length > 0) {
-      const newMember = data.members.find(({ firstname, lastname }) => {
-        const fullName = `(${firstname}|${lastname}) (${lastname}|${firstname})`;
-        return value.match(new RegExp(fullName, "i"));
-      });
-      if (newMember) {
-        setMember(newMember);
-      } else {
-        setError(true);
-      }
+      const found = data.members.find(({ lastname, firstname }) =>
+        value.match(
+          new RegExp(
+            `(${firstname} ${lastname})|(${lastname} ${firstname})`,
+            "i"
+          )
+        )
+      );
+      setMember(found);
+      setError(!found);
     }
   };
-  const styles = createStyles({
-    member: Boolean(member),
-    error,
-    color: member?.favoriteColor,
-  });
-  return (
-    <View style={styles.root}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{app.expo.name}</Text>
-        <Image source={require("../../assets/icon.png")} style={styles.logo} />
+  const header = (
+    <View style={styles.header}>
+      <Text style={styles.title}>{app.expo.name}</Text>
+      <Image source={require("../../assets/icon.png")} style={styles.logo} />
+    </View>
+  );
+  if (member) {
+    return (
+      <View style={styles.root}>
+        {header}
+        <View style={styles.content}>
+          <Avatar label={member.firstname?.[0]} color={member.favoriteColor} />
+          <Text style={styles.greetings}>
+            Bienvenu·e {member.firstname} {member.lastname} !
+          </Text>
+        </View>
       </View>
-      <View style={styles.content}>
-        {member ? (
-          <>
-            <Avatar color={member.favoriteColor} label={member.firstname[0]} />
-            <Text style={styles.greetings}>
-              Bienvenu·e {member.firstname} {member.lastname} !
-            </Text>
-          </>
-        ) : (
+    );
+  }
+  if (error) {
+    return (
+      <View style={styles.root}>
+        {header}
+        <View style={styles.content}>
           <View>
             <TextInput
               placeholder="Identifiant"
@@ -61,21 +72,28 @@ function Identification() {
               value={value}
               onChangeText={onChange}
             />
-            {error && (
-              <Text style={styles.error}>
-                Désolé, tu n'es pas enregistré·e.
-              </Text>
-            )}
+            <Text style={styles.error}>Désolé, tu n'es pas enregistré·e.</Text>
           </View>
-        )}
-      </View>
-      <View style={styles.footer}>
-        {!member &&
-          (error ? (
+          <View style={styles.actions}>
             <Button title="S'enregistrer" />
-          ) : (
-            <Button title="S'identifier" onPress={onPress} />
-          ))}
+          </View>
+        </View>
+      </View>
+    );
+  }
+  return (
+    <View style={styles.root}>
+      {header}
+      <View style={styles.content}>
+        <TextInput
+          placeholder="Identifiant"
+          style={styles.input}
+          value={value}
+          onChangeText={onChange}
+        />
+        <View style={styles.actions}>
+          <Button title="S'identifier" onPress={onPress} />
+        </View>
       </View>
     </View>
   );
@@ -83,40 +101,34 @@ function Identification() {
 
 export default Identification;
 
-const createStyles = ({ member, error, color }) =>
+const createStyles = ({ color, error, member }) =>
   StyleSheet.create({
-    root: {
-      height: "100%",
-      width: "100%",
-      justifyContent: "center",
-    },
+    root: {},
     header: {
-      flexDirection: member ? "row" : "column",
-      justifyContent: "flex-end",
+      flexDirection: error || member ? "row" : "column",
       alignItems: "center",
+      justifyContent: "flex-end",
     },
     content: {
-      flexGrow: member ? 1 : 0,
-      justifyContent: "center",
+      flexGrow: error || member ? 1 : 0,
       alignItems: "center",
-    },
-    footer: {
       justifyContent: "center",
-      alignItems: "center",
-      paddingVertical: 32,
     },
     title: {
-      fontSize: member ? 16 : 32,
+      fontSize: error || member ? 12 : 32,
       fontWeight: "700",
     },
     logo: {
-      height: member ? 64 : 192,
-      width: member ? 64 : 192,
+      height: error || member ? 32 : 192,
+      width: error || member ? 32 : 192,
+      marginLeft: error || member ? 8 : 0,
     },
     greetings: {
-      color,
+      color: color,
       fontSize: 32,
       fontWeight: "700",
+      paddingHorizontal: 32,
+      textAlign: "center",
     },
     input: {
       borderColor: error ? "red" : "black",
@@ -131,5 +143,8 @@ const createStyles = ({ member, error, color }) =>
     },
     error: {
       color: "red",
+    },
+    actions: {
+      marginVertical: 16,
     },
   });
