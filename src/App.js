@@ -2,18 +2,17 @@ import { registerRootComponent } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 
-import Identification from "./screens/Identification";
+//import Identification from "./screens/Identification";
+import Test from "./screens/Test";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Identification />
+      <Test />
       <StatusBar style="auto" />
     </View>
   );
 }
-
-registerRootComponent(App);
 
 const styles = StyleSheet.create({
   container: {
@@ -23,3 +22,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+registerRootComponent(App);
