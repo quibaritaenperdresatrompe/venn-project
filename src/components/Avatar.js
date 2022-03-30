@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import α from "color-alpha";
 
-function Avatar({ color, label }) {
+function Avatar({ color = "#000", label }) {
   const styles = createStyles({ color });
   return (
     <View style={styles.root}>
