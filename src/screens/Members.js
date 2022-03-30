@@ -45,16 +45,7 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   footer: {
-    backgroundColor: "grey",
-    padding: 32,
-  },
-  header: {
-    backgroundColor: "grey",
-    flexDirection: "row",
-    padding: 32,
-    justifyContent: "flex-end",
-  },
-  headerCpmnt: {
+    width: "100%",
     padding: 32,
   },
 });

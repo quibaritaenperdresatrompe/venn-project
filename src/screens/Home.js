@@ -16,6 +16,7 @@ function Home() {
       screenOptions={{
         tabBarLabelStyle: styles.tabLabel,
         tabBarActiveTintColor: color,
+        tabBarStyle: styles.tabBar,
         headerTitleStyle: styles.title,
       }}
     >
@@ -44,14 +45,19 @@ function Home() {
 const styles = StyleSheet.create({
   title: {
     fontWeight: "700",
+    fontSize: 24,
   },
   tabLabel: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "700",
+    height: 32,
   },
   content: {
     flexGrow: 1,
     padding: 16,
+  },
+  tabBar: {
+    height: 72,
   },
 });
 
