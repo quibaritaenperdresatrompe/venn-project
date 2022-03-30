@@ -1,20 +1,13 @@
 import { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Members from "./Members";
 import ColorContext from "../ColorContext";
+import Projects from "./Projects";
 
 const Tab = createBottomTabNavigator();
-
-function Projects() {
-  return (
-    <View style={styles.content}>
-      <Text>Pas de projet.</Text>
-    </View>
-  );
-}
 
 function Home() {
   const [color] = useContext(ColorContext);
