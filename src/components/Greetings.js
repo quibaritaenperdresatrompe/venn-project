@@ -19,7 +19,7 @@ function Greetings({ firstname, lastname }) {
         <Avatar label={firstname?.[0]} color={color} />
       </TouchableOpacity>
       <Text style={styles.root}>
-        Bienvenu·e {firstname} {lastname} !
+        Bienvenu·e {firstname} {lastname} ! 👋
       </Text>
     </>
   );
@@ -31,9 +31,10 @@ const createStyles = ({ color }) =>
   StyleSheet.create({
     root: {
       color,
-      fontSize: 32,
+      fontSize: 24,
       fontWeight: "700",
       paddingHorizontal: 32,
       textAlign: "center",
+      marginVertical: 16,
     },
   });
