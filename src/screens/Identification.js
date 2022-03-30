@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -6,7 +6,6 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
 } from "react-native";
 
 import Members from "./Members";
@@ -17,6 +16,7 @@ import Button from "../components/Button";
 import Greetings from "../components/Greetings";
 
 function Identification({ navigation }) {
+  const [, setColor] = useContext(ColorContext);
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
@@ -78,9 +78,6 @@ function Identification({ navigation }) {
   const onNavigateToHome = () => {
     navigation.navigate("Accueil");
   };
-  const onNavigateToMembers = () => {
-    navigation.navigate("Accueil", { screen: "Membres" });
-  };
   const header = (
     <View style={styles.header}>
       <Text style={styles.title}>{app.expo.name}</Text>
@@ -95,15 +92,7 @@ function Identification({ navigation }) {
       <View style={styles.root}>
         {header}
         <View style={styles.content}>
-          <TouchableOpacity onPress={onNavigateToMembers}>
-            <Avatar
-              label={member.firstname?.[0]}
-              color={member.favoriteColor}
-            />
-          </TouchableOpacity>
-          <Text style={styles.greetings}>
-            Bienvenu·e {member.firstname} {member.lastname} !
-          </Text>
+          <Greetings {...member} />
           <View style={styles.actions}>
             <Button title="Aller à l'accueil" onPress={onNavigateToHome} />
           </View>
