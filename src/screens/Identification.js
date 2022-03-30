@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -6,20 +6,20 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
 } from "react-native";
 
 import app from "../../app.json";
 import data from "../../assets/data.json";
-import Avatar from "../components/Avatar";
+import ColorContext from "../ColorContext";
 import Button from "../components/Button";
+import Greetings from "../components/Greetings";
 
 function Identification({ navigation }) {
+  const [, setColor] = useContext(ColorContext);
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
   const styles = createStyles({
-    color: member?.favoriteColor,
     error,
     member: Boolean(member),
   });
@@ -40,13 +40,13 @@ function Identification({ navigation }) {
       );
       setMember(found);
       setError(!found);
+      if (found) {
+        setColor(found.favoriteColor);
+      }
     }
   };
   const onNavigateToHome = () => {
     navigation.navigate("Accueil");
-  };
-  const onNavigateToMembers = () => {
-    navigation.navigate("Accueil", { screen: "Membres" });
   };
   const header = (
     <View style={styles.header}>
@@ -59,15 +59,7 @@ function Identification({ navigation }) {
       <View style={styles.root}>
         {header}
         <View style={styles.content}>
-          <TouchableOpacity onPress={onNavigateToMembers}>
-            <Avatar
-              label={member.firstname?.[0]}
-              color={member.favoriteColor}
-            />
-          </TouchableOpacity>
-          <Text style={styles.greetings}>
-            Bienvenu·e {member.firstname} {member.lastname} !
-          </Text>
+          <Greetings {...member} />
           <View style={styles.actions}>
             <Button title="Aller à l'accueil" onPress={onNavigateToHome} />
           </View>
@@ -116,7 +108,7 @@ function Identification({ navigation }) {
 
 export default Identification;
 
-const createStyles = ({ color, error, member }) =>
+const createStyles = ({ error, member }) =>
   StyleSheet.create({
     root: {
       flex: 1,
@@ -140,13 +132,6 @@ const createStyles = ({ color, error, member }) =>
       height: error || member ? 32 : 192,
       width: error || member ? 32 : 192,
       marginLeft: error || member ? 8 : 0,
-    },
-    greetings: {
-      color: color,
-      fontSize: 32,
-      fontWeight: "700",
-      paddingHorizontal: 32,
-      textAlign: "center",
     },
     input: {
       borderColor: error ? "red" : "black",

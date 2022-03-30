@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Members from "./Members";
+import ColorContext from "../ColorContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,11 +17,12 @@ function Projects() {
 }
 
 function Home() {
+  const [color] = useContext(ColorContext);
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: styles.tabLabel,
-        tabBarActiveTintColor: "#087f5b",
+        tabBarActiveTintColor: color,
         headerTitleStyle: styles.title,
       }}
     >
@@ -27,12 +30,8 @@ function Home() {
         name="Projets"
         component={Projects}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="briefcase-account"
-              size={size}
-              color={color}
-            />
+          tabBarIcon: (props) => (
+            <MaterialCommunityIcons name="briefcase-account" {...props} />
           ),
         }}
       />
@@ -40,12 +39,8 @@ function Home() {
         name="Membres"
         component={Members}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="account-multiple"
-              size={size}
-              color={color}
-            />
+          tabBarIcon: (props) => (
+            <MaterialCommunityIcons name="account-multiple" {...props} />
           ),
         }}
       />
