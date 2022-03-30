@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
 
 import app from "../../app.json";
@@ -13,7 +14,7 @@ import data from "../../assets/data.json";
 import Avatar from "../components/Avatar";
 import Button from "../components/Button";
 
-function Identification() {
+function Identification({ navigation }) {
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
@@ -41,6 +42,12 @@ function Identification() {
       setError(!found);
     }
   };
+  const onNavigateToHome = () => {
+    navigation.navigate("Accueil");
+  };
+  const onNavigateToMembers = () => {
+    navigation.navigate("Accueil", { screen: "Membres" });
+  };
   const header = (
     <View style={styles.header}>
       <Text style={styles.title}>{app.expo.name}</Text>
@@ -52,10 +59,18 @@ function Identification() {
       <View style={styles.root}>
         {header}
         <View style={styles.content}>
-          <Avatar label={member.firstname?.[0]} color={member.favoriteColor} />
+          <TouchableOpacity onPress={onNavigateToMembers}>
+            <Avatar
+              label={member.firstname?.[0]}
+              color={member.favoriteColor}
+            />
+          </TouchableOpacity>
           <Text style={styles.greetings}>
             Bienvenu·e {member.firstname} {member.lastname} !
           </Text>
+          <View style={styles.actions}>
+            <Button title="Aller à l'accueil" onPress={onNavigateToHome} />
+          </View>
         </View>
       </View>
     );
@@ -103,7 +118,10 @@ export default Identification;
 
 const createStyles = ({ color, error, member }) =>
   StyleSheet.create({
-    root: {},
+    root: {
+      flex: 1,
+      justifyContent: "center",
+    },
     header: {
       flexDirection: error || member ? "row" : "column",
       alignItems: "center",
