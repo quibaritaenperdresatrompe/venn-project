@@ -26,10 +26,10 @@ function Members() {
             />
           </View>
         ))}
+        <View style={styles.footer}>
+          <Button title="Inviter" />
+        </View>
       </ScrollView>
-      <View style={styles.footer}>
-        <Button title="Inviter" />
-      </View>
     </View>
   );
 }
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   avatar: {
-    margin: 8,
+    margin: 16,
   },
   footer: {
     backgroundColor: "grey",

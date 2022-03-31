@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import * as Location from "expo-location";
+=======
+import { useContext, useState } from "react";
+>>>>>>> origin
 import {
   Dimensions,
   Image,
@@ -12,19 +16,18 @@ import {
 import Members from "./Members";
 import app from "../../app.json";
 import data from "../../assets/data.json";
-import Avatar from "../components/Avatar";
+import ColorContext from "../ColorContext";
 import Button from "../components/Button";
-import { clearTimeout } from "timers";
-import { NavigationContainer } from "@react-navigation/native";
+import Greetings from "../components/Greetings";
 
-function Identification() {
+function Identification({ navigation }) {
+  const [, setColor] = useContext(ColorContext);
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
   const [location, setLocation] = useState(null);
   const [timeoutId, setTimeoutId] = useState(null);
   const styles = createStyles({
-    color: member?.favoriteColor,
     error,
     member: Boolean(member),
   });
@@ -72,9 +75,14 @@ function Identification() {
       );
       setMember(found);
       setError(!found);
+      if (found) {
+        setColor(found.favoriteColor);
+      }
     }
   };
-
+  const onNavigateToHome = () => {
+    navigation.navigate("Accueil");
+  };
   const header = (
     <View style={styles.header}>
       <Text style={styles.title}>{app.expo.name}</Text>
@@ -89,15 +97,10 @@ function Identification() {
       <View style={styles.root}>
         {header}
         <View style={styles.content}>
-          <Avatar label={member.firstname?.[0]} color={member.favoriteColor} />
-          <Text style={styles.greetings}>
-            Bienvenu·e {member.firstname} {member.lastname} !
-          </Text>
-          <Text> {coords} </Text>
+          <Greetings {...member} />
           <View style={styles.actions}>
-            <Button title="Membres" />
+            <Button title="Aller à l'accueil" onPress={onNavigateToHome} />
           </View>
-          <Text> {text} </Text>
         </View>
       </View>
     );
@@ -159,9 +162,12 @@ function Identification() {
 
 export default Identification;
 
-const createStyles = ({ color, error, member }) =>
+const createStyles = ({ error, member }) =>
   StyleSheet.create({
-    root: {},
+    root: {
+      flex: 1,
+      justifyContent: "center",
+    },
     header: {
       flexDirection: error || member ? "row" : "column",
       alignItems: "center",
@@ -180,13 +186,6 @@ const createStyles = ({ color, error, member }) =>
       height: error || member ? 32 : 192,
       width: error || member ? 32 : 192,
       marginLeft: error || member ? 8 : 0,
-    },
-    greetings: {
-      color: color,
-      fontSize: 32,
-      fontWeight: "700",
-      paddingHorizontal: 32,
-      textAlign: "center",
     },
     input: {
       borderColor: error ? "red" : "black",
