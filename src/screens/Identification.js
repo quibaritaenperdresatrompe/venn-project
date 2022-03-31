@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as Location from "expo-location";
-=======
-import { useContext, useState } from "react";
->>>>>>> origin
 import {
   Dimensions,
   Image,
