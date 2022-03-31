@@ -2,15 +2,26 @@ import { registerRootComponent } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 
-//import Identification from "./screens/Identification";
-import Test from "./screens/Test";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import Identification from "./screens/Identification";
+import Members from "./screens/Members";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Test />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Identification"
+          component={Identification}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Membre" component={Members} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

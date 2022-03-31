@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as Location from "expo-location";
 import {
   Dimensions,
   Image,
@@ -8,25 +9,57 @@ import {
   View,
 } from "react-native";
 
+import Members from "./Members";
 import app from "../../app.json";
 import data from "../../assets/data.json";
 import Avatar from "../components/Avatar";
 import Button from "../components/Button";
+import { clearTimeout } from "timers";
+import { NavigationContainer } from "@react-navigation/native";
 
 function Identification() {
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [timeoutId, setTimeoutId] = useState(null);
   const styles = createStyles({
     color: member?.favoriteColor,
     error,
     member: Boolean(member),
   });
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  //useEffect(() => {
+  //  if (member && !timeoutId) {
+  //    const id = setTimeout(() => {
+  //      NavigationContainer.navigator("Identification");
+  //    }, 2000);
+  //    setTimeoutId(id);
+  //    return () => {
+  //      clearTimeout(id);
+  //    };
+  //  }
+  //}, [member, timeoutId]);
+
+  let coords = JSON.stringify(location);
+
   const onChange = (text) => {
     setError(false);
     setMember(null);
     setValue(text);
   };
+
   const onPress = () => {
     if (value.length > 0) {
       const found = data.members.find(({ lastname, firstname }) =>
@@ -41,13 +74,17 @@ function Identification() {
       setError(!found);
     }
   };
+
   const header = (
     <View style={styles.header}>
       <Text style={styles.title}>{app.expo.name}</Text>
       <Image source={require("../../assets/icon.png")} style={styles.logo} />
     </View>
   );
+
   if (member) {
+    SetMembersCoords(coords, member.firstname, member.lastname);
+    let text;
     return (
       <View style={styles.root}>
         {header}
@@ -56,6 +93,11 @@ function Identification() {
           <Text style={styles.greetings}>
             Bienvenu·e {member.firstname} {member.lastname} !
           </Text>
+          <Text> {coords} </Text>
+          <View style={styles.actions}>
+            <Button title="Membres" />
+          </View>
+          <Text> {text} </Text>
         </View>
       </View>
     );
@@ -97,6 +139,22 @@ function Identification() {
       </View>
     </View>
   );
+
+  function SetMembersCoords(coords, _Firstname, _Lastname) {
+    for (let memberData in data.members) {
+      // eslint-disable-next-line prettier/prettier
+      if (
+        memberData.lastname == _Lastname &&
+        memberData.firstname == _Firstname
+      ) {
+        memberData.coords = [
+          JSON.stringify(location.coords.longitude),
+          JSON.stringify(location.coords.latitude),
+          JSON.stringify(location.timestamp),
+        ];
+      }
+    }
+  }
 }
 
 export default Identification;

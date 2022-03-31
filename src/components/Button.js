@@ -1,4 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useEffect, useState } from "react";
+import { clearInterval } from "timers";
 
 function Button({ title, onPress }) {
   return (

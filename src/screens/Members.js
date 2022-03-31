@@ -1,4 +1,6 @@
-import { View, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
+import Slider from "@mui/material/Slider";
+import React, { useState, useEffect } from "react";
 
 import data from "../../assets/data.json";
 import Avatar from "../components/Avatar";
@@ -7,6 +9,11 @@ import Button from "../components/Button";
 function Members() {
   return (
     <View>
+      <View style={styles.header}>
+        <Slider />
+        <input type="text" />
+        <Button style={styles.headerCpmnt} title="Rechercher" />
+      </View>
       <ScrollView contentContainerStyle={styles.list}>
         {data.members.map((member) => (
           <View
@@ -31,6 +38,7 @@ export default Members;
 
 const styles = StyleSheet.create({
   list: {
+    backgroundColor: "grey",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -39,7 +47,16 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   footer: {
-    backgroundColor: "white",
+    backgroundColor: "grey",
+    padding: 32,
+  },
+  header: {
+    backgroundColor: "grey",
+    flexDirection: "row",
+    padding: 32,
+    justifyContent: "flex-end",
+  },
+  headerCpmnt: {
     padding: 32,
   },
 });

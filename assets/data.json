@@ -105,6 +105,18 @@
     { "firstname": "Costa", "lastname": "Reype", "favoriteColor": "darkblue" },
     { "firstname": "David", "lastname": "Roussat", "favoriteColor": "red" },
     { "firstname": "Gaetan", "lastname": "Roux", "favoriteColor": "blue" },
-    { "firstname": "Léo", "lastname": "Séry", "favoriteColor": "orange" }
+    { "firstname": "Léo", "lastname": "Séry", "favoriteColor": "orange" },
+    {
+      "firstname": "John",
+      "lastname": "Doe",
+      "favoriteColor": "red",
+      "coords": [2, 2, 2]
+    },
+    {
+      "firstname": "Jane",
+      "lastname": "Doe",
+      "favoriteColor": "green",
+      "coords": [44.848421, -0.577976, 1647253772699]
+    }
   ]
 }
