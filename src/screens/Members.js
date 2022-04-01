@@ -1,14 +1,18 @@
 import { View, ScrollView, StyleSheet } from "react-native";
 
-import data from "../../assets/data.json";
 import Avatar from "../components/Avatar";
 import Button from "../components/Button";
+import useGetAll from "../hooks/useGetAll";
 
 function Members() {
+  const { data, loading, error } = useGetAll("members");
+  if (loading || error) {
+    return null;
+  }
   return (
     <View>
       <ScrollView contentContainerStyle={styles.list}>
-        {data.members.map((member) => (
+        {data.map((member) => (
           <View
             style={styles.avatar}
             key={`${member.firstname}${member.lastname}`}
