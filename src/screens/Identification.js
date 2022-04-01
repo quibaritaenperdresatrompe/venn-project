@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dimensions,
   Image,
@@ -13,10 +13,11 @@ import data from "../../assets/data.json";
 import Avatar from "../components/Avatar";
 import Button from "../components/Button";
 
-function Identification() {
+function Identification({ navigation }) {
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
   const styles = createStyles({
     color: member?.favoriteColor,
     error,
@@ -47,6 +48,23 @@ function Identification() {
       <Image source={require("../../assets/icon.png")} style={styles.logo} />
     </View>
   );
+
+  useEffect(() => {
+    if (member && !timeoutId) {
+      const id = setTimeout(() => {
+        navigation.navigate("Accueil");
+      }, 2300);
+      setTimeoutId(id);
+      return () => {
+        clearTimeout(id);
+      };
+    }
+  }, [member, navigation, timeoutId]);
+
+  const onNavigate = () => {
+    navigation.navigate("Accueil");
+  };
+
   if (member) {
     return (
       <View style={styles.root}>
@@ -56,6 +74,7 @@ function Identification() {
           <Text style={styles.greetings}>
             Bienvenu·e {member.firstname} {member.lastname} !
           </Text>
+          <Button title="Aller à l'accueil" onPress={onNavigate} />
         </View>
       </View>
     );
@@ -129,6 +148,7 @@ const createStyles = ({ color, error, member }) =>
       fontWeight: "700",
       paddingHorizontal: 32,
       textAlign: "center",
+      marginVertical: 8,
     },
     input: {
       borderColor: error ? "red" : "black",
