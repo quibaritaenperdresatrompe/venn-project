@@ -1,7 +1,11 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 function Home() {
-  return <View />;
+  return (
+    <View>
+      <Text>Welcome!</Text>
+    </View>
+  );
 }
 
 export default Home;
