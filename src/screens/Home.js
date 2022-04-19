@@ -1,22 +1,25 @@
-import { useContext } from "react";
-import { StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Members from "./Members";
-import ColorContext from "../ColorContext";
-import Projects from "./Projects";
 
 const Tab = createBottomTabNavigator();
 
+function Projects() {
+  return (
+    <View style={styles.content}>
+      <Text>Pas de projet.</Text>
+    </View>
+  );
+}
+
 function Home() {
-  const [color] = useContext(ColorContext);
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: styles.tabLabel,
-        tabBarActiveTintColor: color,
-        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: "#087f5b",
         headerTitleStyle: styles.title,
       }}
     >
@@ -24,8 +27,12 @@ function Home() {
         name="Projets"
         component={Projects}
         options={{
-          tabBarIcon: (props) => (
-            <MaterialCommunityIcons name="briefcase-account" {...props} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="briefcase-account"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -33,8 +40,12 @@ function Home() {
         name="Membres"
         component={Members}
         options={{
-          tabBarIcon: (props) => (
-            <MaterialCommunityIcons name="account-multiple" {...props} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="account-multiple"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -45,19 +56,14 @@ function Home() {
 const styles = StyleSheet.create({
   title: {
     fontWeight: "700",
-    fontSize: 24,
   },
   tabLabel: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "700",
-    height: 32,
   },
   content: {
     flexGrow: 1,
     padding: 16,
-  },
-  tabBar: {
-    height: 72,
   },
 });
 
