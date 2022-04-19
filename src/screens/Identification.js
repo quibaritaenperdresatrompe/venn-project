@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import * as Location from "expo-location";
 import {
   Dimensions,
   Image,
@@ -28,16 +27,16 @@ function Identification({ navigation }) {
     member: Boolean(member),
   });
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        return;
-      }
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
+  //useEffect(() => {è
+  //  (async () => {
+  //    let { status } = await Location.requestForegroundPermissionsAsync();
+  //    if (status !== "granted") {
+  //      return;
+  //    }
+  //    let location = await Location.getCurrentPositionAsync({});
+  //    setLocation(location);
+  //  })();
+  //}, []);
 
   //useEffect(() => {
   //  if (member && !timeoutId) {

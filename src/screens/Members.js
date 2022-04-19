@@ -1,5 +1,4 @@
 import { View, ScrollView, StyleSheet, Text } from "react-native";
-import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 
 import data from "../../assets/data.json";
@@ -10,7 +9,6 @@ function Members() {
   return (
     <View>
       <View style={styles.header}>
-        <Slider />
         <input type="text" />
         <Button style={styles.headerCpmnt} title="Rechercher" />
       </View>
