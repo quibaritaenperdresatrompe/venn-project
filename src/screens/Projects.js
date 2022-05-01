@@ -1,39 +1,17 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import useGetAll from "../hooks/useGetAll";
-import Project from "./Project";
+import ProjectForm from "./ProjectForm";
+import ProjectList from "./ProjectList";
+
+const Stack = createNativeStackNavigator();
 
 function Projects() {
-  const { loading, error, data } = useGetAll("projects");
-  if (loading) {
-    return (
-      <View style={styles.root}>
-        <Text>Chargement...</Text>
-      </View>
-    );
-  }
-  if (error || !data?.length > 0) {
-    return (
-      <View style={styles.root}>
-        <Text>Pas de projet.</Text>
-      </View>
-    );
-  }
-  const renderItem = ({ item }) => <Project {...item} />;
   return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(project) => project.id}
-      contentContainerStyle={styles.root}
-    />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tous les projets" component={ProjectList} />
+      <Stack.Screen name="Nouveau projet" component={ProjectForm} />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  root: {
-    paddingHorizontal: 16,
-  },
-});
 
 export default Projects;

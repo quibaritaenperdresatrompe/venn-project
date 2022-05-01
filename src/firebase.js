@@ -6,6 +6,8 @@ import {
   getFirestore,
   query,
   getDocFromCache,
+  addDoc,
+  orderBy,
 } from "firebase/firestore";
 
 const config = {
@@ -22,12 +24,24 @@ function parseDocument(document) {
   return { id: document.id, ...document.data() };
 }
 
-export async function getAll(name) {
-  const snapshot = await getDocs(query(collection(db, name)));
+export async function getAll(name, { fieldPath, orderByDirection } = {}) {
+  const sort = fieldPath ? orderBy(fieldPath, orderByDirection) : null;
+  const queryConstraints = [sort].filter(Boolean);
+  const snapshot = await getDocs(
+    query(collection(db, name), ...queryConstraints)
+  );
   return snapshot.docs.map(parseDocument);
 }
 
 export async function getOne(name, id) {
   const snapshot = await getDocFromCache(doc(db, name, id));
   return parseDocument(snapshot);
+}
+
+export async function add(name, payload) {
+  const snapshot = await addDoc(collection(db, name), {
+    ...payload,
+    createdAt: Date.now(),
+  });
+  return snapshot.id;
 }
