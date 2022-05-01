@@ -2,10 +2,13 @@ import { useState } from "react";
 import { registerRootComponent } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { LogBox } from "react-native";
 
 import Identification from "./screens/Identification";
 import Home from "./screens/Home";
 import ColorContext from "./ColorContext";
+
+LogBox.ignoreLogs(["Setting a timer"]);
 
 const Stack = createNativeStackNavigator();
 
