@@ -12,8 +12,10 @@ LogBox.ignoreLogs(["Setting a timer"]);
 
 const Stack = createNativeStackNavigator();
 
+const DEFAULT_COLOR = "black";
+
 export default function App() {
-  const [color, setColor] = useState(null);
+  const [color, setColor] = useState(DEFAULT_COLOR);
   return (
     <ColorContext.Provider value={[color, setColor]}>
       <NavigationContainer>
