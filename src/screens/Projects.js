@@ -21,20 +21,18 @@ function Projects() {
   }
   const renderItem = ({ item }) => <Project {...item} />;
   return (
-    <View style={styles.root}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(project) => project.id}
-      />
-    </View>
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={(project) => project.id}
+      contentContainerStyle={styles.root}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   root: {
-    flexGrow: 1,
-    padding: 16,
+    paddingHorizontal: 16,
   },
 });
 

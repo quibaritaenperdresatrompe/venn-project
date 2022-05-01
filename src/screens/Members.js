@@ -21,18 +21,16 @@ function Members() {
     );
   }
   return (
-    <View>
-      <ScrollView contentContainerStyle={styles.list}>
-        {data.map((member) => (
-          <View style={styles.avatar} key={member.id}>
-            <Avatar label={member.firstname[0]} color={member.favoriteColor} />
-          </View>
-        ))}
-        <View style={styles.footer}>
-          <Button title="Inviter" />
+    <ScrollView contentContainerStyle={styles.list}>
+      {data.map((member) => (
+        <View style={styles.avatar} key={member.id}>
+          <Avatar label={member.firstname[0]} color={member.favoriteColor} />
         </View>
-      </ScrollView>
-    </View>
+      ))}
+      <View style={styles.footer}>
+        <Button title="Inviter" />
+      </View>
+    </ScrollView>
   );
 }
 
