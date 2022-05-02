@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import Button from "../components/Button";
+import Input from "../components/Input";
 import useAdd from "../hooks/useAdd";
 
 function ProjectForm({ navigation }) {
@@ -14,12 +15,11 @@ function ProjectForm({ navigation }) {
   return (
     <View style={styles.root}>
       <View style={styles.content}>
-        <TextInput
+        <Input
           placeholder="Titre"
-          style={styles.input}
           value={title}
           onChangeText={setTitle}
-          disabled={loading}
+          editable={!loading}
         />
         <View style={styles.actions}>
           <Button
@@ -38,16 +38,6 @@ export default ProjectForm;
 const styles = StyleSheet.create({
   root: {
     paddingHorizontal: 16,
-  },
-  input: {
-    borderColor: "black",
-    borderWidth: 4,
-    borderStyle: "solid",
-    backgroundColor: "rgba(0,0,0,0.1)",
-    padding: 8,
-    fontSize: 20,
-    fontWeight: "700",
-    marginVertical: 8,
   },
   actions: {
     paddingVertical: 16,

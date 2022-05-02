@@ -12,6 +12,7 @@ import app from "../../app.json";
 import ColorContext from "../ColorContext";
 import Button from "../components/Button";
 import Greetings from "../components/Greetings";
+import Input from "../components/Input";
 import useGetAll from "../hooks/useGetAll";
 
 function Identification({ navigation }) {
@@ -73,12 +74,12 @@ function Identification({ navigation }) {
       <View style={styles.root}>
         {header}
         <View style={styles.content}>
-          <View>
-            <TextInput
+          <View style={styles.input}>
+            <Input
               placeholder="Identifiant"
-              style={styles.input}
               value={value}
               onChangeText={onChange}
+              error={error}
             />
             <Text style={styles.error}>Désolé, tu n'es pas enregistré·e.</Text>
           </View>
@@ -93,12 +94,13 @@ function Identification({ navigation }) {
     <View style={styles.root}>
       {header}
       <View style={styles.content}>
-        <TextInput
-          placeholder="Identifiant"
-          style={styles.input}
-          value={value}
-          onChangeText={onChange}
-        />
+        <View style={styles.input}>
+          <Input
+            placeholder="Identifiant"
+            value={value}
+            onChangeText={onChange}
+          />
+        </View>
         <View style={styles.actions}>
           <Button title="S'identifier" onPress={onPress} />
         </View>
@@ -135,14 +137,7 @@ const createStyles = ({ error, member }) =>
       marginLeft: error || member ? 8 : 0,
     },
     input: {
-      borderColor: error ? "red" : "black",
-      borderWidth: 4,
-      borderStyle: "solid",
-      backgroundColor: "rgba(0,0,0,0.1)",
-      padding: 8,
       width: Dimensions.get("window").width - 64,
-      fontSize: 20,
-      fontWeight: "700",
       marginVertical: 8,
     },
     error: {
