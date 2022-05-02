@@ -1,25 +1,29 @@
 import { useIsFocused } from "@react-navigation/native";
-import { useState, useEffect, useCallback } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useState, useEffect } from "react";
 
-import { getAll } from "../firebase";
+import { db } from "../firebase";
 
-export default function useGetAll(collection, sort) {
+export default function useGetAll(name, sort) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const isFocused = useIsFocused();
-  const getData = useCallback(async () => {
-    try {
-      const json = await getAll(collection, sort);
-      setData(json);
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  }, [collection, sort]);
   useEffect(() => {
-    getData();
-  }, [getData, isFocused]);
+    const queryConstraints = [sort ? orderBy(...sort) : null].filter(Boolean);
+    const unsubscribe = onSnapshot(
+      query(collection(db, name), ...queryConstraints),
+      (snapshot) => {
+        setData(snapshot.docs.map(parse));
+        setLoading(false);
+      },
+      () => setError(true)
+    );
+    return () => unsubscribe();
+  }, [isFocused, name, sort]);
   return { loading, data, error };
+}
+
+function parse(document) {
+  return { id: document.id, ...document.data() };
 }

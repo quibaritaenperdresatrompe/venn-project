@@ -1,21 +1,25 @@
+import { addDoc, collection } from "firebase/firestore";
 import { useState, useCallback } from "react";
 
-import { add } from "../firebase";
+import { db } from "../firebase";
 
-export default function useAdd(collection, payload) {
+export default function useAdd(name, payload) {
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState(null);
   const [error, setError] = useState(false);
-  const addData = useCallback(async () => {
+  const add = useCallback(async () => {
     try {
       setLoading(true);
-      const json = await add(collection, payload);
-      setId(json);
+      const snapshot = await addDoc(collection(db, name), {
+        ...payload,
+        createdAt: Date.now(),
+      });
+      setId(snapshot.id);
     } catch (e) {
       setError(e);
     } finally {
       setLoading(false);
     }
-  }, [collection, payload]);
-  return { loading, id, error, add: addData };
+  }, [name, payload]);
+  return { loading, id, error, add };
 }

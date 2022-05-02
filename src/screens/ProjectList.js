@@ -5,10 +5,7 @@ import useGetAll from "../hooks/useGetAll";
 import Project from "./Project";
 
 function ProjectList({ navigation }) {
-  const { loading, error, data } = useGetAll("projects", {
-    fieldPath: "createdAt",
-    orderByDirection: "desc",
-  });
+  const { loading, error, data } = useGetAll("projects", ["createdAt", "desc"]);
   if (loading) {
     return (
       <View style={styles.root}>
