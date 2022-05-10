@@ -1,12 +1,5 @@
-import { useContext, useState } from "react";
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { useContext, useState, useMemo } from "react";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 import app from "../../app.json";
 import ColorContext from "../ColorContext";
@@ -50,11 +43,14 @@ function Identification({ navigation }) {
   const onNavigateToHome = () => {
     navigation.navigate("Accueil");
   };
-  const header = (
-    <View style={styles.header}>
-      <Text style={styles.title}>{app.expo.name}</Text>
-      <Image source={require("../../assets/icon.png")} style={styles.logo} />
-    </View>
+  const header = useMemo(
+    () => (
+      <View style={styles.header}>
+        <Text style={styles.title}>{app.expo.name}</Text>
+        <Image source={require("../../assets/icon.png")} style={styles.logo} />
+      </View>
+    ),
+    [styles.header, styles.logo, styles.title]
   );
   if (member) {
     return (
