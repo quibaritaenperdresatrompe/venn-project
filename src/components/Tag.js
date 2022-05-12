@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { random } from "colord";
 import α from "color-alpha";
 
-function Avatar({ color: defaultColor = "#000", label }) {
+function Tag({ label, color: defaultColor }) {
   const color = useMemo(() => defaultColor || random().toHex(), [defaultColor]);
   const styles = createStyles({ color });
   return (
@@ -13,19 +13,16 @@ function Avatar({ color: defaultColor = "#000", label }) {
   );
 }
 
-export default Avatar;
+export default Tag;
 
-const SIZE = 40;
 const createStyles = ({ color }) =>
   StyleSheet.create({
     root: {
-      height: SIZE,
-      width: SIZE,
+      padding: 8,
       backgroundColor: α(color, 0.1),
       borderColor: color,
       borderWidth: 4,
       borderStyle: "solid",
-      borderRadius: SIZE / 2,
       justifyContent: "center",
       alignItems: "center",
     },
