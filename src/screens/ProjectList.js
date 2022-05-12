@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 
 import Button from "../components/Button";
 import useGetAll from "../hooks/useGetAll";
-import Project from "./Project";
+import Project from "../components/Project";
 
 function ProjectList({ navigation }) {
   const { loading, error, data } = useGetAll("projects", ["createdAt", "desc"]);
