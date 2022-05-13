@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { useCallback } from "react";
 
 import Button from "../components/Button";
 import useGetAll from "../hooks/useGetAll";
@@ -6,6 +13,21 @@ import Project from "../components/Project";
 
 function ProjectList({ navigation }) {
   const { loading, error, data } = useGetAll("projects", ["createdAt", "desc"]);
+  const renderItem = useCallback(
+    ({ item }) => (
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Projets", {
+            screen: "Projet",
+            params: { id: item.id, title: item.title },
+          });
+        }}
+      >
+        <Project {...item} />
+      </TouchableOpacity>
+    ),
+    [navigation]
+  );
   if (loading) {
     return (
       <View style={styles.root}>
@@ -20,7 +42,7 @@ function ProjectList({ navigation }) {
       </View>
     );
   }
-  const renderItem = ({ item }) => <Project {...item} />;
+
   const onNavigateToProjectForm = () => {
     navigation.navigate("Nouveau projet");
   };

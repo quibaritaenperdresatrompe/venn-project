@@ -1,4 +1,3 @@
-import { useIsFocused } from "@react-navigation/native";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
@@ -8,7 +7,6 @@ export default function useGetAll(name, sort) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
-  const isFocused = useIsFocused();
   useEffect(() => {
     const queryConstraints = [sort ? orderBy(...sort) : null].filter(Boolean);
     const unsubscribe = onSnapshot(
@@ -20,7 +18,7 @@ export default function useGetAll(name, sort) {
       () => setError(true)
     );
     return () => unsubscribe();
-  }, [isFocused, name, sort]);
+  }, [name, sort]);
   return { loading, data, error };
 }
 

@@ -24,6 +24,7 @@ function Home() {
         name="Projets"
         component={Projects}
         options={{
+          headerShown: false,
           tabBarIcon: (props) => (
             <MaterialCommunityIcons name="briefcase-account" {...props} />
           ),

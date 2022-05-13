@@ -88,7 +88,7 @@ export default ProjectForm;
 
 const styles = StyleSheet.create({
   root: {
-    paddingHorizontal: 16,
+    padding: 16,
   },
   field: {
     marginVertical: 8,
