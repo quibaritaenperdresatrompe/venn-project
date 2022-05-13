@@ -75,7 +75,7 @@ function ProjectDetails({ navigation, route }) {
         </>
       )}
       <View style={styles.actions}>
-        <Button title="Supprimer" onPress={onDelete} />
+        <Button title="Supprimer" onPress={onDelete} color="red" />
       </View>
     </View>
   );

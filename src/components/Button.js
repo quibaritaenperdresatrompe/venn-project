@@ -1,10 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useContext } from "react";
 
-import ColorContext from "../ColorContext";
-
-function Button({ title, onPress }) {
-  const [color] = useContext(ColorContext);
+function Button({ title, onPress, color = "black" }) {
   const styles = createStyles({ color });
   return (
     <TouchableOpacity style={styles.root} onPress={onPress}>
