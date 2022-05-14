@@ -19,12 +19,27 @@ function ProjectForm({ navigation }) {
   const [user] = useContext(UserContext);
   const matchSuggestions = useCallback(
     (text) =>
-      members.filter(
-        (member) =>
-          !participants.some((participant) => participant.id === member.id) &&
-          (member.firstname.match(text) || member.lastname.match(text))
-      ),
-    [members, participants]
+      members.filter((member) => {
+        const exist = participants.some(
+          (participant) => participant.id === member.id
+        );
+        if (exist) {
+          return false;
+        }
+        const me = member.id === user.id;
+        if (me) {
+          return true;
+        }
+        if (text.length > 2) {
+          return match(text, member);
+        }
+        return false;
+      }),
+    [members, participants, user.id]
+  );
+  const colorExtractor = useCallback(
+    (member) => (member.id === user.id ? user.color : member.favoriteColor),
+    [user.color, user.id]
   );
   const onAdd = async () => {
     if (title.length > 0) {
@@ -84,7 +99,12 @@ function ProjectForm({ navigation }) {
 
 const renderLabel = (member) => `${member.firstname} ${member.lastname}`;
 const idExtractor = (member) => member.id;
-const colorExtractor = (member) => member.favoriteColor;
+const match = (text = "", member) =>
+  text
+    .split(" ")
+    .every((word) =>
+      [member.firstname, member.lastname].some((field) => field.match(word))
+    );
 
 export default ProjectForm;
 
