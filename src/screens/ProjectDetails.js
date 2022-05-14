@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 
 import useGetOne from "../hooks/useGetOne";
 import useGetAll from "../hooks/useGetAll";
@@ -7,11 +7,13 @@ import Tag from "../components/Tag";
 import Avatar from "../components/Avatar";
 import Button from "../components/Button";
 import useDeleteOne from "../hooks/useDeleteOne";
+import UserContext from "../UserContext";
 
 function ProjectDetails({ navigation, route }) {
   const { loading, error, data } = useGetOne("projects", route.params.id);
   const { data: members } = useGetAll("members");
   const { deleteOne } = useDeleteOne("projects", route.params.id);
+  const [user] = useContext(UserContext);
   const onDelete = async () => {
     await deleteOne();
     navigation.navigate("Tous les projets");
@@ -26,13 +28,13 @@ function ProjectDetails({ navigation, route }) {
             {
               id,
               label: participant.firstname?.[0],
-              color: participant.favoriteColor,
+              color: id === user.id ? user.color : participant.favoriteColor,
             },
           ];
         }
         return acc;
       }, []),
-    [data.participants, members]
+    [data?.participants, members, user.color, user.id]
   );
   if (loading) {
     return (

@@ -6,7 +6,7 @@ import { LogBox } from "react-native";
 
 import Identification from "./screens/Identification";
 import Home from "./screens/Home";
-import ColorContext from "./ColorContext";
+import UserContext from "./UserContext";
 
 LogBox.ignoreLogs(["Setting a timer"]);
 
@@ -15,16 +15,16 @@ const Stack = createNativeStackNavigator();
 const DEFAULT_COLOR = "black";
 
 export default function App() {
-  const [color, setColor] = useState(DEFAULT_COLOR);
+  const [user, setUser] = useState({ color: DEFAULT_COLOR });
   return (
-    <ColorContext.Provider value={[color, setColor]}>
+    <UserContext.Provider value={[user, setUser]}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Identification" component={Identification} />
           <Stack.Screen name="Accueil" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
-    </ColorContext.Provider>
+    </UserContext.Provider>
   );
 }
 

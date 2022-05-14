@@ -1,12 +1,14 @@
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import Avatar from "./Avatar";
 import useGetAll from "../hooks/useGetAll";
 import Tag from "./Tag";
+import UserContext from "../UserContext";
 
 function Project({ title, participants = [], tags = [] }) {
   const { data: members } = useGetAll("members");
+  const [user] = useContext(UserContext);
   const avatars = useMemo(
     () =>
       participants.reduce((acc, id) => {
@@ -17,13 +19,13 @@ function Project({ title, participants = [], tags = [] }) {
             {
               id,
               label: participant.firstname?.[0],
-              color: participant.favoriteColor,
+              color: id === user.id ? user.color : participant.favoriteColor,
             },
           ];
         }
         return acc;
       }, []),
-    [members, participants]
+    [members, participants, user.color, user.id]
   );
   return (
     <View style={styles.root}>

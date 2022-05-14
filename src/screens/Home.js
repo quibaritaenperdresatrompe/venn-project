@@ -4,18 +4,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Members from "./Members";
-import ColorContext from "../ColorContext";
+import UserContext from "../UserContext";
 import Projects from "./Projects";
 
 const Tab = createBottomTabNavigator();
 
 function Home() {
-  const [color] = useContext(ColorContext);
+  const [user] = useContext(UserContext);
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: styles.tabLabel,
-        tabBarActiveTintColor: color,
+        tabBarActiveTintColor: user.color,
         tabBarStyle: styles.tabBar,
         headerTitleStyle: styles.title,
       }}

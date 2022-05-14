@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 import Button from "../components/Button";
@@ -7,6 +7,7 @@ import MultiValue from "../components/MultiValue";
 import Select from "../components/Select";
 import useAdd from "../hooks/useAdd";
 import useGetAll from "../hooks/useGetAll";
+import UserContext from "../UserContext";
 
 function ProjectForm({ navigation }) {
   const [title, setTitle] = useState("");
@@ -15,6 +16,7 @@ function ProjectForm({ navigation }) {
   const [error, setError] = useState(null);
   const { add, loading } = useAdd("projects");
   const { data: members } = useGetAll("members");
+  const [user] = useContext(UserContext);
   const matchSuggestions = useCallback(
     (text) =>
       members.filter(

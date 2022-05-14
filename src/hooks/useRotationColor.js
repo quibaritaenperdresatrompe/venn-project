@@ -5,11 +5,11 @@ import names from "colord/plugins/names";
 extend([names]);
 import { useIsFocused } from "@react-navigation/native";
 
-import ColorContext from "../ColorContext";
+import UserContext from "../UserContext";
 
 const INTERVAL = 300;
 function useRotationColor() {
-  const [color, setColor] = useContext(ColorContext);
+  const [user, setUser] = useContext(UserContext);
   const [subscription, setSubscription] = useState(null);
   const isFocused = useIsFocused();
   useEffect(() => {
@@ -19,7 +19,7 @@ function useRotationColor() {
     } else {
       setSubscription(
         Gyroscope.addListener((rotation) => {
-          setColor(rotateColor(color, rotation));
+          setUser({ ...user, color: rotateColor(user.color, rotation) });
         })
       );
       Gyroscope.setUpdateInterval(INTERVAL);
@@ -29,8 +29,8 @@ function useRotationColor() {
       setSubscription(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [color, isFocused]);
-  return color;
+  }, [user.color, isFocused]);
+  return user.color;
 }
 
 const G = 9.81;

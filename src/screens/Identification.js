@@ -2,7 +2,7 @@ import { useContext, useState, useMemo } from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 import app from "../../app.json";
-import ColorContext from "../ColorContext";
+import UserContext from "../UserContext";
 import Button from "../components/Button";
 import Greetings from "../components/Greetings";
 import Input from "../components/Input";
@@ -10,7 +10,7 @@ import useGetAll from "../hooks/useGetAll";
 
 function Identification({ navigation }) {
   const { data } = useGetAll("members");
-  const [, setColor] = useContext(ColorContext);
+  const [, setUser] = useContext(UserContext);
   const [value, setValue] = useState("");
   const [member, setMember] = useState(null);
   const [error, setError] = useState(false);
@@ -36,7 +36,7 @@ function Identification({ navigation }) {
       setMember(found);
       setError(!found);
       if (found) {
-        setColor(found.favoriteColor);
+        setUser({ id: found.id, color: found.favoriteColor });
       }
     }
   };
