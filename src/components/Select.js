@@ -26,16 +26,16 @@ function Select({
   function onChangeText(text) {
     setError(null);
     setValue(text);
-    if (text.length > 2) {
-      const matches = matchSuggestions(text);
-      setSuggestions(matches);
-      if (matches.length === 0) {
-        setError("Aucune suggestion.");
-      }
-    } else {
-      setSuggestions([]);
+    const matches = matchSuggestions(text);
+    setSuggestions(matches);
+    if (matches.length === 0) {
+      setError("Aucune suggestion.");
     }
   }
+  const onFocus = () => {
+    const matches = matchSuggestions(value);
+    setSuggestions(matches);
+  };
   const onSubmit = () => {
     if (value.length > 0) {
       const matches = matchSuggestions(value.trim());
@@ -74,6 +74,7 @@ function Select({
         value={value}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmit}
+        onFocus={onFocus}
         {...props}
       />
       {error && <Text style={styles.error}>{error}</Text>}
